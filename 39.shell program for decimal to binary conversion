@@ -1,0 +1,14 @@
+#!/bin/bash
+decimal_to_binary() {
+  number=$1
+  binary=""
+  while [ $number -gt 0 ]
+  do
+    binary="$((number % 2))$binary"
+    number=$((number / 2))
+  done
+  echo $binary
+}
+read -p "Enter a decimal number: " decimal
+binary=$(decimal_to_binary $decimal)
+echo "Binary equivalent: $binary"
