@@ -1,0 +1,19 @@
+#!/bin/bash
+square_root() {
+  num=$1
+  res=`echo "scale=2; sqrt($num)" | bc`
+  echo $res
+}
+read -p "Enter coefficient a: " a
+read -p "Enter coefficient b: " b
+read -p "Enter coefficient c: " c
+discriminant=$(echo "($b * $b) - (4 * $a * $c)" | bc)
+if [ $(echo "$discriminant >= 0" | bc) -eq 1 ]
+then
+  root1=$(echo "(-1 * $b + $(square_root $discriminant)) / (2 * $a)" | bc)
+  root2=$(echo "(-1 * $b - $(square_root $discriminant)) / (2 * $a)" | bc)
+  echo "Root 1: $root1"
+  echo "Root 2: $root2"
+else
+  echo "The equation has complex roots."
+fi
